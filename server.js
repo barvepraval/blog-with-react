@@ -3,13 +3,15 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require("mongoose");
 
+const { mongoAddress } = require('./config.js');
+
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb+srv://Vincenzo-Admin:LyraDB2020@cluster0-8nbht.mongodb.net/blogDB", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(mongoAddress, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const postSchema = new mongoose.Schema({
     title: String,
