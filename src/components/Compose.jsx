@@ -38,7 +38,7 @@ function Compose() {
         <label>Post</label>
         <textarea value={post.content} name="content" className="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Your Post..." onChange={changePost}></textarea>
       </div>
-      <button type="submit" className="btn btn-primary" onClick={handleClick}>Publish</button>
+      <button type="submit" className="btn btn-dark" onClick={handleClick}>Publish</button>
     </form>
     </div>
   );

@@ -1,13 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-function Post(props) {
+import reactStringReplace from 'react-string-replace';
 
+function Post(state, props) {
+    
     return (
         <div>
-            <h1>{props.title}</h1>
-            <p>{props.content}</p>
+            <h1>{state.title}</h1>
+            <p>
+                {   
+                    state.posts.search.trim() !== '' ?
+                    reactStringReplace(state.content, state.posts.search, (match, i) => (
+                        <mark key={i}>{match}</mark>
+                    ))
+                    :
+                    state.content
+                 }
+            </p>
         </div> 
     );
 }
 
-export default Post;
+const mapStateToProps = state => {
+    return {
+      posts: state.posts
+    };
+  };
+
+export default connect(mapStateToProps, null)(Post);
